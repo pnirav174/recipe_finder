@@ -100,6 +100,8 @@ class _RecipeListPageState extends ConsumerState<RecipeListPage> {
                           .read(filterControllerProvider.notifier)
                           .setCategory(null),
                     ),
+                  if (filter.category != null && filter.area != null)
+                    SizedBox(width: 8),
                   if (filter.area != null)
                     Chip(
                       label: Text(filter.area!),

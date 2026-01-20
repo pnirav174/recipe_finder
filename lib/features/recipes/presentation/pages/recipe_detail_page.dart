@@ -133,6 +133,7 @@ class _RecipeDetailViewState extends ConsumerState<_RecipeDetailView>
             SliverAppBar(
               expandedHeight: 300,
               pinned: true,
+              centerTitle: true,
               leading: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ClipOval(
@@ -167,6 +168,7 @@ class _RecipeDetailViewState extends ConsumerState<_RecipeDetailView>
                       : settings.currentExtent <= settings.minExtent + 20;
 
                   return FlexibleSpaceBar(
+                    centerTitle: true,
                     title: isCollapsed
                         ? Text(
                             widget.recipe.name,

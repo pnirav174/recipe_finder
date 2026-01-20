@@ -63,8 +63,7 @@ void main() {
         state.query,
         '',
       ); // Implementation of clearFilters resets only query?
-      // Checking implementation: `state = const FilterState();`
-      // So it resets query to '' (default) and sortAscending to true (default).
+
       expect(state.category, null);
       expect(state.sortAscending, true);
     });

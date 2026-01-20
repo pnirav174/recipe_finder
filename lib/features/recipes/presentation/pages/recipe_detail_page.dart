@@ -166,7 +166,8 @@ class _RecipeDetailViewState extends ConsumerState<_RecipeDetailView>
                   final isCollapsed = settings == null
                       ? false
                       : settings.currentExtent <= settings.minExtent + 20;
-
+                  final isDark =
+                      Theme.of(context).brightness == Brightness.dark;
                   return FlexibleSpaceBar(
                     centerTitle: true,
                     title: isCollapsed
@@ -174,8 +175,8 @@ class _RecipeDetailViewState extends ConsumerState<_RecipeDetailView>
                             widget.recipe.name,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              color: Colors.black,
+                            style: TextStyle(
+                              color: isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.w600,
                             ),
                           )

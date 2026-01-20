@@ -11,7 +11,21 @@ class RecipeRepository {
   RecipeRepository(this._remoteDataSource, this._cacheDataSource);
 
   Future<List<RecipeModel>> searchRecipes(String query) async {
-    return _remoteDataSource.searchRecipes(query);
+    try {
+      return await _remoteDataSource.searchRecipes(query);
+    } catch (e) {
+      // Fallback to offline cache search
+      final cached = _cacheDataSource.getAllCachedRecipes();
+      if (query.isEmpty) {
+        return cached;
+      }
+      final lowerQuery = query.toLowerCase();
+      return cached.where((recipe) {
+        return recipe.name.toLowerCase().contains(lowerQuery) ||
+            (recipe.category?.toLowerCase() ?? '').contains(lowerQuery) ||
+            (recipe.area?.toLowerCase() ?? '').contains(lowerQuery);
+      }).toList();
+    }
   }
 
   Future<RecipeModel> getRecipeById(String id) async {

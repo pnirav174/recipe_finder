@@ -48,10 +48,12 @@ class RecipeCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    '${recipe.category} • ${recipe.area}',
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
+                  if ((recipe.category ?? "") != "" ||
+                      (recipe.area ?? "") != "")
+                    Text(
+                      '${recipe.category ?? ""} • ${recipe.area ?? ""}',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
                 ],
               ),
             ),

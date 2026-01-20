@@ -13,4 +13,8 @@ class RecipeCacheDataSource {
   RecipeModel? getCachedRecipe(String id) {
     return _box.get(id);
   }
+
+  List<RecipeModel> getAllCachedRecipes() {
+    return _box.values.toList();
+  }
 }
